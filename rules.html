@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules of "Texas Hold’em”</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <header>
+        <nav id="skip">
+        <h2 class="visually-hidden">Jump to content</h2>
+        <a href="#content" class="visually-hidden-focusable">
+            Skip to main content
+        </a>
+    </nav>
+
+    <nav id="mainmenu">
+        <a href="index.html">Home</a> <span class="suit-sep" aria-hidden="true">&#9830;</span>
+        <b>Rules</b> <span class="suit-sep" aria-hidden="true">&#9830;</span>
+        <a href="strategy.html">Strategy &amp; Tips</a> <span class="suit-sep" aria-hidden="true">&#9830;</span>
+        <a href="form.html">Quiz Form</a>
+    </nav>
+
+    <h1>Rules of Texas Hold'em</h1>
+    </header>
+   
+    <main id="content">
+        <div class="page-toolbar">
+            <button class="a11y-toggle" onclick="toggleAccessibility()">Accessibility Mode</button>
+        </div>
+        <section>
+            <p>
+                The objective of “Texas Hold'em” is to make the best five-card hand 
+                using any combination of your <strong>two private cards</strong> 
+                and <strong>five community cards</strong>.
+            </p>
+        </section>
+
+        <div class="layout">
+
+            <section class="left">
+                <h2>The hands chart</h2>
+
+                <figure>
+                    <a href="media/poker_hands.webp" target="_blank">
+                        <img src="media/poker_hands.webp" class="bigImage" alt="Poker hand rankings" >
+                    </a>
+                    <figcaption>Click to enlarge</figcaption>
+                </figure>
+
+                <figure>
+                    <a href="media/6b388e6373.webp" target="_blank">
+                        <img src="media/6b388e6373.webp" class="bigImage" alt="Board and cards of poker" >
+                    </a>
+                    <figcaption>Click to enlarge</figcaption>
+                </figure>
+            </section>
+
+            <section class="right">
+
+                <article class="box">
+                    <h3>1. The Setup</h3>
+                    <img src="media/setup.jpeg" alt="Poker table setup showing cards and ships during a game">
+
+                    <ul>
+                        <li><strong>Dealer Button:</strong> A disc that moves clockwise after every hand to determine who “deals” (and who bets last). </li>
+                        <li><strong>Blinds:</strong> Before any cards are dealt, the two players to the left of the dealer must put in forced bets called the Small Blind and Big Blind to create a “pot” to play for. </li>
+                    </ul>
+
+                     <h3>2. The Four Betting Rounds</h3>
+                    <img src="media/hands.jpeg" alt="Betting Rounds">
+
+                    <ol>
+                        <li><strong>Pre-Flop:</strong> Every player is dealt two private cards face down(Hole Cards). The first round of betting happens now. </li>
+                        <li><strong>Flop:</strong> The dealer places three community cards face up in the middle. These belong to everyone. Another round of betting follows. </li>
+                        <li><strong>Turn:</strong> A fourth community card is dealt face up. A third round of betting occurs. </li>
+                        <li><strong>River:</strong> The fifth and final community card is dealt face up. This is the final round of betting</li>
+                    </ol>
+
+                    <h3>3. The Showdown</h3>
+                    <p>
+                        If more than one player remains after the final bet, they reveal their cards. The player with the highest-ranking five-card hand wins the entire pot. If everyone else folds, the last remaining player wins without to show their cards. 
+                    </p>
+                </article>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <address>
+            Author: Yukina Konishi <a href="mailto:woofin.5oo@gmail.com">woofin.5oo@gmail.com</a>
+        </address>
+    </footer>
+    <script>
+    function toggleAccessibility() {
+        document.body.classList.toggle("high-contrast");
+        document.body.classList.toggle("large-font");
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+header,
+footer,
+#mainmenu,
+#skip,
+aside,
+button,
+video {
+    display: none;
+}
+
+.layout {
+    display: block;
+}
+
+.left, .right {
+    width: 100%;
+}
+
+body {
+    background: white;
+    color: black;
+}
+
+main {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+}

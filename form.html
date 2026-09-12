@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Quiz – Test Your Knowledge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+
+<body class="quiz-page">
+
+    <header>
+        <nav id="skip">
+        <h2 class="visually-hidden">Jump to content</h2>
+        <a href="#content" class="visually-hidden-focusable">
+            Skip to main content
+        </a>
+    </nav>
+
+    <nav id="mainmenu">
+        <a href="index.html">Home</a> <span class="suit-sep" aria-hidden="true">&#9830;</span>
+        <a href="rules.html">Rules</a> <span class="suit-sep" aria-hidden="true">&#9830;</span>
+        <a href="strategy.html">Strategy &amp; Tips</a> <span class="suit-sep" aria-hidden="true">&#9830;</span>
+        <b>Quiz</b>
+    </nav>
+
+    <h1>How to Play Poker <small>- Beginner Edition</small></h1>
+    <h2>Let's test your poker knowledge!</h2>
+    </header>
+
+        <main id="content">
+            <div class="page-toolbar">
+                <button class="a11y-toggle" onclick="toggleAccessibility()">Accessibility Mode</button>
+            </div>
+            <p>Complete this quiz to see if you are ready to hit the tables! Your answers are graded instantly — nothing is sent anywhere.</p>
+
+            <form id="quiz-form" novalidate>
+                <fieldset>
+                    <legend>Player Information</legend>
+                    <label for="username">Name:</label>
+                    <input type="text" id="username" name="username" size="30" maxlength="50" placeholder="Type your name here" required>
+                </fieldset>
+
+                <fieldset data-question data-correct="FullHouse" data-group="strength">
+                    <legend>Which hand is stronger?</legend>
+                    <input type="radio" id="Flush" name="strength" value="Flush" required>
+                    <label for="Flush">a) A Flush (5 cards of the same suit)</label><br>
+
+                    <input type="radio" id="FullHouse" name="strength" value="FullHouse">
+                    <label for="FullHouse">b) A Full House (3 of a kind + pair)</label>
+
+                    <p class="feedback" role="status"></p>
+                </fieldset>
+
+                <fieldset data-question data-correct="Clockwise" data-group="direction">
+                    <legend>In which direction does the Dealer Button move?</legend>
+                    <input type="radio" id="clockwise" name="direction" value="Clockwise" required>
+                    <label for="clockwise">a) Clockwise to the next player</label><br>
+
+                    <input type="radio" id="counter" name="direction" value="counter">
+                    <label for="counter">b) Counter-clockwise to the previous player</label>
+
+                    <p class="feedback" role="status"></p>
+                </fieldset>
+
+                <fieldset data-question data-correct="flop-community" data-group="flop">
+                    <legend>What happens during "The Flop"?</legend>
+                    <input type="radio" id="flop-hole" name="flop" value="flop-hole" required>
+                    <label for="flop-hole">a) Each player is dealt two private cards face down</label><br>
+
+                    <input type="radio" id="flop-community" name="flop" value="flop-community">
+                    <label for="flop-community">b) The dealer places three community cards face up, followed by a round of betting</label><br>
+
+                    <input type="radio" id="flop-river" name="flop" value="flop-river">
+                    <label for="flop-river">c) The fifth and final community card is revealed</label><br>
+
+                    <input type="radio" id="flop-showdown" name="flop" value="flop-showdown">
+                    <label for="flop-showdown">d) Remaining players reveal their cards to determine a winner</label>
+
+                    <p class="feedback" role="status"></p>
+                </fieldset>
+
+                <fieldset data-question data-correct="check,fold" data-group="action[]">
+                    <legend>Betting Actions (Select all that apply)</legend>
+                    <input type="checkbox" id="check" name="action[]" value="check">
+                    <label for="check">Check</label><br>
+
+                    <input type="checkbox" id="fold" name="action[]" value="fold">
+                    <label for="fold">Fold</label><br>
+
+                    <input type="checkbox" id="swap" name="action[]" value="swap">
+                    <label for="swap">Swap cards with the dealer</label>
+
+                    <p class="feedback" role="status"></p>
+                </fieldset>
+
+                <div id="submit-area">
+                    <button type="submit"><span>Submit Quiz</span></button>
+                </div>
+
+                <div id="quiz-result" role="status" aria-live="polite" hidden></div>
+            </form>
+            
+        </main>
+
+
+        <footer>
+        <address>
+            Author: Yukina Konishi <a href="mailto:woofin.5oo@gmail.com">woofin.5oo@gmail.com</a>
+        </address>
+    </footer>
+
+    <script>
+        function toggleAccessibility() {
+            document.body.classList.toggle("high-contrast");
+            document.body.classList.toggle("large-font");
+        }
+
+        document.getElementById("quiz-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const form = event.target;
+
+            if (!form.reportValidity()) {
+                return;
+            }
+
+            function getLabelText(input) {
+                if (!input) return "";
+                const label = form.querySelector('label[for="' + input.id + '"]');
+                return label ? label.textContent.trim() : input.value;
+            }
+
+            const questions = form.querySelectorAll("[data-question]");
+            let correctCount = 0;
+
+            questions.forEach(function (fieldset) {
+                const groupName = fieldset.dataset.group;
+                const correctAnswer = fieldset.dataset.correct;
+                const feedback = fieldset.querySelector(".feedback");
+                const inputs = Array.from(form.querySelectorAll('[name="' + groupName + '"]'));
+
+                let isCorrect;
+                let correctText;
+
+                if (groupName === "action[]") {
+                    const checked = inputs
+                        .filter(function (input) { return input.checked; })
+                        .map(function (input) { return input.value; })
+                        .sort();
+                    const expectedValues = correctAnswer.split(",");
+                    const expectedSorted = [...expectedValues].sort();
+                    isCorrect = checked.length === expectedSorted.length &&
+                        checked.every(function (value, index) { return value === expectedSorted[index]; });
+
+                    correctText = expectedValues
+                        .map(function (value) {
+                            return getLabelText(inputs.find(function (input) { return input.value === value; }));
+                        })
+                        .join(", ");
+                } else {
+                    const selected = inputs.find(function (input) { return input.checked; });
+                    isCorrect = !!selected && selected.value === correctAnswer;
+                    correctText = getLabelText(inputs.find(function (input) { return input.value === correctAnswer; }));
+                }
+
+                fieldset.classList.toggle("is-correct", isCorrect);
+                fieldset.classList.toggle("is-incorrect", !isCorrect);
+                feedback.textContent = isCorrect
+                    ? "✓ Correct — " + correctText
+                    : "✗ Not quite. Correct answer: " + correctText;
+
+                if (isCorrect) {
+                    correctCount += 1;
+                }
+            });
+
+            const name = form.querySelector("#username").value.trim();
+            const total = questions.length;
+            const result = document.getElementById("quiz-result");
+            result.hidden = false;
+            result.textContent = (name ? name + ", you" : "You") + " scored " + correctCount + " out of " + total + ".";
+            result.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
+</html>
